@@ -63,7 +63,6 @@ const Credit = styled.div`
    background-color: white;
    border-radius: 1.2rem;
    box-shadow: 6px 11px 41px 0px rgba(0, 0, 0, 0.33);
-   // padding: 50px;
    border: 1px solid black;
    cursor: pointer;
    
@@ -71,8 +70,12 @@ const Credit = styled.div`
 `;
 
 const Views = styled.div`
-   padding: 50px;
-   border: 2px solid red;
+background-color: white;
+border-radius: 1.2rem;
+box-shadow: 6px 11px 41px 0px rgba(0, 0, 0, 0.33);
+border: 1px solid black;
+cursor: pointer;
+
 `;
 
 const Pending = styled.div`
