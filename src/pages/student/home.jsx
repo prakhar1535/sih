@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ArrowRight, Bold, Pointer } from "lucide-react";
 import { Coins } from "lucide-react";
+import { Eye } from "lucide-react";
 
 
 
@@ -36,7 +37,29 @@ const Home = () => {
                </div>
 
                </Credit>
-            <Views>Views</Views>
+            <Views>
+            <div 
+               style={{margin: "0.75rem", 
+               fontWeight: "Bold", 
+               fontFamily: "Montserrat, sans-serif",
+               fontSize: "1.875rem"
+               }}>
+                  
+               Project Views <ArrowRight style={{display:"inline"}}/>
+
+               <div 
+               style={{fontSize: "3.125rem", 
+               padding: "10px" , 
+               margin: "2rem", 
+               fontFamily: "Montserrat, sans-serif",
+               fontWeight: 500,
+               color: "#005EAC"
+               }}>
+                  <center>1.3k <Eye color="#DAB34E" size={48} style={{display:"inline"}}/></center>
+               </div>
+               
+               </div>
+            </Views>
             <Submitted>Submitted</Submitted>
             <Issues>Issues</Issues>
             <Pending>Pending</Pending>
