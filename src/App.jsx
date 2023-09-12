@@ -1,28 +1,23 @@
-import React from 'react'
-import About from './pages/About'
-import UpperNavbar from './components/uppernavbar'
-import Background from './components/background'
-import Sidenavbar from './components/sidenavbar'
-import './App.css'
-
+import React from 'react';
+import UpperNavbar from './components/student/uppernavbar';
+import Background from './components/student/background';
+import Sidenavbar from './components/student/sidenavbar';
+import './App.css';
+import Homestudent from './pages/student/home';
 
 function App() {
   return (
     <div>
-    
-    <Background/>
+      <Background />
       <UpperNavbar />
-
-      <div className='grid grid-cols-3 '>
-      <Sidenavbar/>
-    
-      <About/>
-
-      </div>      
-
-</div>
-  )
+      <div className='grid grid-cols-3'>
+        <Sidenavbar />
+        <div className='col-span-3 md:col-span-2'> 
+          <Homestudent />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
-
+export default App;
