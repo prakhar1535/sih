@@ -45,7 +45,8 @@ const Home = () => {
                fontSize: "1.875rem"
                }}>
                   
-               Project Views <ArrowRight style={{display:"inline"}}/>
+               Project Views <ArrowRight style={{display:"inline"}}/> 
+               </div>
 
                <div 
                style={{fontSize: "3.125rem", 
@@ -58,11 +59,39 @@ const Home = () => {
                   <center>1.3k <Eye color="#DAB34E" size={48} style={{display:"inline"}}/></center>
                </div>
                
-               </div>
+               
             </Views>
-            <Submitted>Submitted</Submitted>
-            <Issues>Issues</Issues>
-            <Pending>Pending</Pending>
+            <Submitted>
+            <div 
+               style={{margin: "0.75rem", 
+               fontWeight: "Bold", 
+               fontFamily: "Montserrat, sans-serif",
+               fontSize: "1.35rem"
+               }}>
+                  
+               Assigment Submitted <ArrowRight style={{display:"inline"}}/> 
+               </div>
+            </Submitted>
+            <Issues><div 
+               style={{margin: "0.75rem", 
+               fontWeight: "Bold", 
+               fontFamily: "Montserrat, sans-serif",
+               fontSize: "1.35rem"
+               }}>
+                  
+               Issues <ArrowRight style={{display:"inline"}}/> 
+               </div>
+               </Issues>
+            <Pending><div 
+               style={{margin: "0.75rem", 
+               fontWeight: "Bold", 
+               fontFamily: "Montserrat, sans-serif",
+               fontSize: "1.35rem"
+               }}>
+                  
+               Pending Assigments <ArrowRight style={{display:"inline"}}/> 
+               </div>
+               </Pending>
          </Home_div>
       </div>
    )
@@ -102,16 +131,25 @@ cursor: pointer;
 `;
 
 const Pending = styled.div`
-   padding: 20px;
-   border: 2px solid red;
+background-color: white;
+border-radius: 1.2rem;
+box-shadow: 6px 11px 41px 0px rgba(0, 0, 0, 0.33);
+border: 1px solid black;
+cursor: pointer;
 `;
 
 const Submitted = styled.div`
-   padding: 20px;
-   border: 2px solid black;
+background-color: white;
+border-radius: 1.2rem;
+box-shadow: 6px 11px 41px 0px rgba(0, 0, 0, 0.33);
+border: 1px solid black;
+cursor: pointer;
 `;
 
 const Issues = styled.div`
-   padding: 20px;
-   border: 2px solid red;
+background-color: white;
+border-radius: 1.2rem;
+box-shadow: 6px 11px 41px 0px rgba(0, 0, 0, 0.33);
+border: 1px solid black;
+cursor: pointer;
 `;
