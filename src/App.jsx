@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { UpperNavbar } from './components/student/uppernavbar';
+import  Uppernavbar  from './components/student/uppernavbar';
 import Background from './components/student/background';
 import Sidenavbar from './components/student/sidenavbar';
 import './App.css';
@@ -27,7 +27,7 @@ else{
     <BrowserRouter>
       <div>
         <Background />
-        <UpperNavbar />
+        <Uppernavbar />
         <div className={`${flex_dir}`}>
           <Sidenavbar />
           <div className='grid col-span-3 md:col-span-2 md:ml-[20rem]'>
