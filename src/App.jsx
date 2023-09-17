@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import UpperNavbar from './components/student/uppernavbar';
+import { UpperNavbar } from './components/student/uppernavbar';
 import Background from './components/student/background';
 import Sidenavbar from './components/student/sidenavbar';
 import './App.css';
