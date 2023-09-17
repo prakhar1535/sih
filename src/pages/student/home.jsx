@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { ArrowRight, Bold, Pointer } from "lucide-react";
 import { Coins } from "lucide-react";
 import { Eye } from "lucide-react";
+import { Check } from "lucide-react";
+import { Ban } from "lucide-react";
+import { Clock} from "lucide-react";
+
 
 
 
@@ -12,7 +16,9 @@ const Home = () => {
    
    return (
       <div>
-         <Home_div>
+         <Home_div >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
+            <div>
             <Credit>
                <div 
                style={{margin: "0.75rem", 
@@ -37,6 +43,8 @@ const Home = () => {
                </div>
 
                </Credit>
+               </div>
+               <div>
             <Views>
             <div 
                style={{margin: "0.75rem", 
@@ -61,8 +69,11 @@ const Home = () => {
                
                
             </Views>
+            </div>
+            <div>
+
             <Submitted>
-            <div 
+            <center><div 
                style={{margin: "0.75rem", 
                fontWeight: "Bold", 
                fontFamily: "Montserrat, sans-serif",
@@ -70,9 +81,36 @@ const Home = () => {
                }}>
                   
                Assigment Submitted <ArrowRight style={{display:"inline"}}/> 
-               </div>
+               </div></center>
+               <div 
+               style={{fontSize: "3.125rem", 
+               padding: "10px" , 
+               margin: "2rem", 
+               fontFamily: "Montserrat, sans-serif",
+               fontWeight: 500,
+               color: "#005EAC"
+               }}>
+                  <center> 4/7 <Check color="#4AFF3A" size={48} style={{display:"inline"}}/></center>
+                  </div>
+
+                  <center> <div
+    style={{
+      // position: "relative",
+      // width: "100%",
+      backgroundColor: "#4AFF3A",
+      borderRadius: " 0 0px 10px 10px",
+      height: "15px",
+      marginBottom: "1px",
+      width: "98%",
+
+    }}
+  ></div></center>
+               
+               
             </Submitted>
-            <Issues><div 
+            </div>
+            <div>
+            <Issues><center><div 
                style={{margin: "0.75rem", 
                fontWeight: "Bold", 
                fontFamily: "Montserrat, sans-serif",
@@ -81,18 +119,70 @@ const Home = () => {
                   
                Issues <ArrowRight style={{display:"inline"}}/> 
                </div>
+               <div 
+               style={{fontSize: "3.125rem", 
+               padding: "10px" , 
+               margin: "2rem", 
+               fontFamily: "Montserrat, sans-serif",
+               fontWeight: 500,
+               color: "#005EAC"
+               }}>
+                  <center> 1/7 <Ban color="#FF3A3A" size={48} style={{display:"inline"}}/></center>
+                  </div></center>
+
+                 <center> <div
+    style={{
+      // position: "relative",
+      // width: "100%",
+      backgroundColor: "#FF3A3A",
+      borderRadius: " 0 0px 10px 10px",
+      height: "15px",
+      marginBottom: "1px",
+      width: "98%",
+
+    }}
+  ></div></center>
                </Issues>
-            <Pending><div 
+               </div>
+               <div>
+               <Pending>
+               <center><div 
                style={{margin: "0.75rem", 
                fontWeight: "Bold", 
                fontFamily: "Montserrat, sans-serif",
                fontSize: "1.35rem"
                }}>
                   
-               Pending Assigments <ArrowRight style={{display:"inline"}}/> 
+               Pending <ArrowRight style={{display:"inline"}}/> 
                </div>
+               <div 
+               style={{fontSize: "3.125rem", 
+               padding: "10px" , 
+               margin: "2rem", 
+               fontFamily: "Montserrat, sans-serif",
+               fontWeight: 500,
+               color: "#005EAC"
+               }}>
+                  <center> 2/7 <Clock color="#FFAE36" size={48} style={{display:"inline"}}/></center>
+                  </div></center>
+
+                 <center> <div
+    style={{
+      // position: "relative",
+      // width: "100%",
+      backgroundColor: "#FFAE36",
+      borderRadius: " 0 0px 10px 10px",
+      height: "15px",
+      marginBottom: "1px",
+      width: "98%",
+
+    }}
+  ></div></center>
                </Pending>
+               </div>
+               </div>
          </Home_div>
+         
       </div>
    )
 }
@@ -104,11 +194,15 @@ export default Home;
 const Home_div = styled.div`
    margin: 1rem;
    display: grid;
-   grid-template-columns: 1fr 1fr; 
+   
    grid-template-rows: repeat(3, auto); 
    grid-gap: 10px;
    z-index: 999;
 
+   @media (max-width: 768px) {
+      
+      
+    }
 `;
 
 const Credit = styled.div`
@@ -117,6 +211,7 @@ const Credit = styled.div`
    box-shadow: 6px 11px 41px 0px rgba(0, 0, 0, 0.33);
    border: 1px solid black;
    cursor: pointer;
+   
    
 
 `;

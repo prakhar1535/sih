@@ -1,9 +1,9 @@
 import React from 'react'
 
-function About() {
+function SubmitAssignment() {
   return (
     <div className='z-1000'>d</div>
   )
 }
 
-export default About
+export default SubmitAssignment
