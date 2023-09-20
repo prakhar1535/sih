@@ -102,7 +102,7 @@ else{
   Bottomnavbar = (
 <div className="flex rounded-sm">
       <div
-      style={{ backgroundColor: 'white', borderRadius: "20px"  }}
+      style={{ backgroundColor: '#E3F0FF', borderRadius: "20px"  }}
         className={` ${
           open ? "w-72" : "w-20 "
         } bg-purple h-screen p-5 pt-8 relative duration-300`}

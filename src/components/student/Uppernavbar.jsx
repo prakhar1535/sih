@@ -28,7 +28,7 @@ const NewDetails = Details.filter((student) => student.id === 1);
 
   return (
     <div className="navbar"
-    style={{ backgroundColor: 'white'}}>
+    style={{ backgroundColor: '#E4F0FF'}}>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">

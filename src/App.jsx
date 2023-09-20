@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import  Uppernavbar  from './components/student/uppernavbar';
-import Background from './components/student/background';
+import Uppernavbar  from './components/student/uppernavbar';
+// import Background from './components/student/background';
 import Sidenavbar from './components/student/sidenavbar';
 import './App.css';
 import Homestudent from './pages/student/home';
@@ -26,7 +26,7 @@ else{
   return (
     <BrowserRouter>
       <div>
-        <Background />
+        {/* <Background /> */}
         <Uppernavbar />
         <div className={`${flex_dir}`}>
           <Sidenavbar />
@@ -36,10 +36,10 @@ else{
               <Route path="/" element={<Homestudent/>} />
               <Route path="/submit" element={<SubmitAssignment/>} />
               <Route path="/leaderboard" element={<Leaderboard/>} />
-              <Route path="/projects" component={<Browseprojects/>} />
-              <Route path="/analytics" component={<Analytics/>} />
-              <Route path="/portal" component={<Collegeportal/>} />
-              <Route path="/settings" component={<Settings/>} />
+              <Route path="/projects" element={<Browseprojects/>} />
+              <Route path="/analytics" element={<Analytics/>} />
+              <Route path="/portal" element={<Collegeportal/>} />
+              <Route path="/settings" element={<Settings/>} />
               
             </Routes>
           </div>
