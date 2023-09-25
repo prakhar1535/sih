@@ -1,20 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Home, Settings } from "lucide-react";
 import { Trophy } from "lucide-react";
 import { Upload } from "lucide-react";
 import { Search , ArrowBigDown , FolderArchive } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { teacherstate } from '../../store/Teacher';
+import { Button } from "@mui/material";
+import { studentState } from "../../store/student/Student";
 
 
 
-
-
-
-const Sidenavbar = () => {
- 
+const Sidenavbar = ({user}) => {
+  // let loggedInStatusForTeacher=useRecoilState(teacherstate)[0].isLoggedIn
+  // let loggedInStatusForStudent=useRecoilState(studentState)[0]
+  // console.log('from sidenavbar',loggedInStatusForStudent);
     const [activeIndex, setActiveIndex] = useState(null);
-
-
+let navigate=useNavigate()
+const setTeacherDetails=useSetRecoilState(teacherstate)
+const setstudentDetails=useSetRecoilState(studentState)
   const Menus = [
     { title: "Home", src: <Home />, to: "/" , },
     { title: "Submit Assignment", src: <Upload />, gap: true, to: "/submit" },
@@ -28,13 +32,127 @@ const Sidenavbar = () => {
   const handleMenuClick = (index) => {
     setActiveIndex(index);
   };
-
+const logoutHandler=()=>{
+  // alert(localStorage.getItem("token"));
+  localStorage.removeItem("token")
+  // alert(localStorage.getItem("token"));
+navigate("/")
+  setTeacherDetails((prevUserDetails) => ({
+    name:"",
+    college:null,
+    department:null,
+    contactNumber:null,
+    email: "",
+    classes:[],
+    projectsRecieved:[],
+    password: "",
+    isLoggedIn: false,
+    
+  }))
+  setstudentDetails((prevUserDetails) => ({
+    name: "",
+    email: "",
+    password: "",
+    collegeDetails: {
+        enrollmentNumber: null,
+        collegeId: null,
+        courseEnrolled: null
+    },
+    classesJoined:[],
+    projectsUploaded:[],
+    isLoggedIn: false,
+    
+  }))
+}
 const [open, setOpen] = useState(true);
 let Bottomnavbar = null
 let width_win = window.screen.width
+const meRouteHandlerForTeacher=async()=>{
+  // console.log('me route');
+  let response= await fetch("http://localhost:3000/teacher/me",{
+    method:"GET" ,
+    headers:{authorization:`Bearer ${localStorage.getItem("token")}`,
+    "Content-Type":"application/json"
+  }
+  })
+  if(response.ok){
+    let data= await response.json()
+    // console.log('data from uppernav');
+    // console.log(data);
+    // console.log(data.email,data.password,data.college.name);
+    setTeacherDetails((prevUserDetails) => ({
+      ...prevUserDetails,
+      _id:data._id,
+      isLoggedIn:true,
+      email:data.email,
+      password:data.password,
+      name:data.name,
+      college:data.college.name,
+      classes:data.classes,
+      projectsRecieved:data.projectsRecieved
+      ,
+    }));
+  
+    // console.log('from detch in upper');
+    // console.log(teacherState);
+  }
+}
+const meRouteHandlerForStudent=async()=>{
+  console.log('me route for student calling');
+  let response= await fetch("http://localhost:3000/student/me",{
+    method:"GET" ,
+    headers:{Authorization:`Bearer ${localStorage.getItem("token")}`,
+    "Content-Type":"application/json"
+  }
+  })
+  if(response.ok){
+    let data= await response.json()
+    // console.log('data from uppernav');
+    // console.log(data);
+    // console.log(data.email,data.password,data.college.name);
+    setstudentDetails((prevUserDetails) => ({
+      ...prevUserDetails,
+      _id:data._id,
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      collegeDetails: {
+          enrollmentNumber: data.collegeDetails.enrollmentNumber,
+          collegeId: data.collegeDetails.collegeId,
+          courseEnrolled: data.collegeDetails.courseEnrolled
+      },
+      classesJoined:data.classesJoined,
+      projectsUploaded:data.projectsUploaded,
+      isLoggedIn: true,
+    
+    }));
+  
+    // console.log('from detch in upper');
+    // console.log(studentDetails);
+  }
+}
+if(!user.loggedInAsStudent){
+  // console.log(user.loggedInAsStudent);
 
+  useEffect(()=>{
+    
+    // console.log('from useeff in upper');
+    meRouteHandlerForTeacher()
+  
+  
+  },[teacherstate.isLoggedIn])
+}else{
 
-if(width_win <= 768){
+  useEffect(()=>{
+    // console.log(user.loggedInAsStudent);
+    
+    // console.log('from useeff in upper');
+    meRouteHandlerForStudent()
+  
+  
+  },[studentState.isLoggedIn])
+}
+ if(width_win <= 768){
   Bottomnavbar = (
     
 <div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
@@ -128,7 +246,7 @@ else{
             Dashboard
           </h1>
         </div>
-        <ul className="pt-6">
+         <ul className="pt-6">
         {Menus.map((Menu, index) => (
   <li
     key={index}
@@ -150,7 +268,9 @@ else{
     </NavLink>
   </li>
 ))}
+<Button style={{width:'100%',marginTop:'3rem'}} variant="contained" onClick={logoutHandler}>Logout</Button>
         </ul>
+       
       </div>
       
     </div>

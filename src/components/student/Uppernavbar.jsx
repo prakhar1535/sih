@@ -1,7 +1,103 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { User } from 'lucide-react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { teacherstate } from '../../store/Teacher';
+import { studentState } from '../../store/student/Student';
 
-export default function Uppernavbar() {
+export default function Uppernavbar({user}) {
+let teacherState=useRecoilState(teacherstate)[0]
+const studentDetails=useRecoilState(studentState)[0]
+const setStudentDetails=useSetRecoilState(studentState)
+// console.log(teacherState,'from upper');
+// let loggedInStatus=useRecoilState(teacherstate)[0].isLoggedIn
+// console.log(loggedInStatus,'from uppper ');
+
+const setTeacherDetails=useSetRecoilState(teacherstate)
+
+const meRouteHandlerForStudent=async()=>{
+  // console.log('me route');
+  let response= await fetch("http://localhost:3000/student/me",{
+    method:"GET" ,
+    headers:{Authorization:`Bearer ${localStorage.getItem("token")}`,
+    "Content-Type":"application/json"
+  }
+  })
+  if(response.ok){
+    let data= await response.json()
+    // console.log('data from uppernav');
+    // console.log(data);
+    // console.log(data.email,data.password,data.college.name);
+    setStudentDetails((prevUserDetails) => ({
+      ...prevUserDetails,
+      _id:data._id,
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      collegeDetails: {
+          enrollmentNumber: data.collegeDetails.enrollmentNumber,
+          collegeId: data.collegeDetails.collegeId,
+          courseEnrolled: data.collegeDetails.courseEnrolled
+      },
+      classesJoined:data.classesJoined,
+      projectsUploaded:data.projectsUploaded,
+      isLoggedIn: true,
+    
+    }));
+  
+    // console.log('from detch in upper');
+    // console.log(studentDetails);
+  }
+}
+const meRouteHandlerForTeacher=async()=>{
+  // console.log('me route');
+  let response= await fetch("http://localhost:3000/teacher/me",{
+    method:"GET" ,
+    headers:{Authorization:`Bearer ${localStorage.getItem("token")}`,
+    "Content-Type":"application/json"
+  }
+  })
+  if(response.ok){
+    let data= await response.json()
+    // console.log('data from uppernav');
+    // console.log(data);
+    // console.log(data.email,data.password,data.college.name);
+    setTeacherDetails((prevUserDetails) => ({
+      ...prevUserDetails,
+      _id:data._id,
+      isLoggedIn:true,
+      email:data.email,
+      password:data.password,
+      name:data.name,
+      college:data.college.name,
+      classes:data.classes,
+      projectsRecieved:data.projectsRecieved
+      ,
+    }));
+  
+    // console.log('from detch in upper');
+    // console.log(teacherState);
+  }
+}
+if(!user.loggedInAsStudent){
+  useEffect(()=>{
+  
+    // console.log('from useeff in upper');
+    meRouteHandlerForTeacher()
+  
+ 
+},[])
+  
+}
+else{
+  useEffect(()=>{
+  
+    // console.log('from useeff in upper');
+    meRouteHandlerForStudent()
+  
+ 
+},[])
+
+}
 
 const Details = [
   {
@@ -69,10 +165,7 @@ const NewDetails = Details.filter((student) => student.id === 1);
             <details>
               <summary><User color="black" size={20} />Profile</summary>
               <ul className="p-2">
-              {NewDetails.map((student, index) => (
-            <li key={index} className='font-bold'>
-              <a>{student.Name}</a>
-            </li>))}
+              <li className='w-40 text-red-500 font-bold'>{teacherState.name}</li>
                 <li className='w-40 text-red-500 font-bold'><a >Sign out</a></li>
                 <li><a>Settings</a></li>
               </ul>
@@ -83,17 +176,12 @@ const NewDetails = Details.filter((student) => student.id === 1);
               <a>{student.Rollno}</a>
             </li>
           ))}
-           {NewDetails.map((student, index) => (
-          <li key={index} className='font-bold'>
-            <a>{student.College}</a>
-          </li>
-        ))}
+           <li>{teacherState.college}</li>
 
         </ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn ">Button</a>
-      </div>
+      </div> 
+      
+    
     </div>
   );
 }
