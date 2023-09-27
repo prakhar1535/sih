@@ -26,6 +26,7 @@ import StudentHome from './pages/student/StudentHome';
 import JoinClass from './pages/student/JoinClass';
 import UploadProject from './pages/student/UploadProject';
 import { UserAs } from './store/UserAs';
+import MainPortal from './pages/MainPortal';
 function App() {
 
 let flex_dir = null
@@ -51,6 +52,7 @@ const userAs=useRecoilState(UserAs)[0]
             
             <Routes>
               <Route path="/" element={<Home/>} />
+              <Route path="/mainPortal" element={<MainPortal/>} />
               <Route path="/teacher/login"element={<TeacherLogin/>}/>
               <Route path="/teacher/signup"element={<TeacherSignup/>}/>
               <Route path='/teacher/home'element={<TeacherHome/>}/>
