@@ -25,7 +25,7 @@ const setstudentDetails=useSetRecoilState(studentState)
     { title: "Leaderboard", src: <Trophy />, to: "/leaderboard" },
     { title: "Browse Projects", src: <Search />, to: "/projects" },
     { title: "Analytics", src: <ArrowBigDown />, to: "/analytics" },
-    { title: "College Portal", src: <FolderArchive />, gap: true, to: "/portal" },
+    { title: "College Portal", src: <FolderArchive />, gap: true, to: "/mainPortal" },
     { title: "Setting", src: <Settings />, to: "/settings" },
   ];
   
